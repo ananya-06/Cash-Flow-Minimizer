@@ -1,0 +1,16 @@
+/* Apply styles to TitledPane headers */
+.titled-pane {
+    -fx-text-fill: #ffffff; /* Header text color */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.titled-pane > .title {
+    -fx-background-color: #0f4368; /* Primary color */
+    -fx-text-fill: #ffffff; /* Text color for header */
+    -fx-padding: 5 10;
+}
+
+.titled-pane > .content {
+    -fx-background-color: #e6f1f8; /* Light background for dropdown content */
+}

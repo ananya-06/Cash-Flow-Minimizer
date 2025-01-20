@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane  xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.ananya.ctrl.MainController"
+            prefHeight="400.0" prefWidth="600.0">
+    <!-- Top Pane -->
+    <top>
+        <VBox>
+            <VBox spacing="5" style="-fx-background-color: #0f4368; -fx-padding: 10; -fx-alignment: center;">
+                <Label text="Simplify Debts" style="-fx-font-size: 24px; -fx-text-fill: #ffffff;" />
+                <Label text="Manage your expenses effortlessly" style="-fx-font-size: 16px; -fx-text-fill: #ffffff;" />
+            </VBox>
+
+            <HBox spacing="10" style="-fx-alignment: center; -fx-padding: 10;">
+                <Button text="Add Group" onAction="#createGroup" style="-fx-background-color: #2c8bcf; -fx-text-fill: #ffffff; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 5 15;" />
+                <Button text="Add Members" onAction="#showAddMemberPane" style="-fx-background-color: #2c8bcf; -fx-text-fill: #ffffff; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 5 15;" />
+                <Button text="Add Transactions" onAction="#showAddTransactionPane" style="-fx-background-color: #2c8bcf; -fx-text-fill: #ffffff; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 5 15;" />
+                <Button text="Minimize transactions!" onAction="#showAddMinimizePane" style="-fx-background-color: #2c8bcf; -fx-text-fill: #ffffff; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 5 15;" />
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Left Section -->
+    <left>
+        <VBox fx:id="groupListContainer" minWidth="500.0" maxWidth="500.0" spacing="5" style="-fx-padding: 10; -fx-background-color: #e6f1f8; -fx-border-color: #0f4368; -fx-border-width: 2;">
+            <Label text="No groups added" fx:id="emptyMessage" style="-fx-text-fill: #0f4368; -fx-font-size: 14px; -fx-font-style: italic;" />
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane BorderPane.alignment="CENTER" maxWidth="600.0">
+            <!-- Add Member Pane -->
+            <VBox fx:id="addMemberPane" spacing="10" layoutX="20" layoutY="60" visible="false" managed="false">
+                <Label text="Select Group"/>
+                <ComboBox fx:id="groupDropdown" promptText="Select Group"/>
+
+                <Label text="Add Member"/>
+                <TextField fx:id="memberNameField" promptText="Enter Member Name"/>
+                <Button text="Add Member" onAction="#handleAddMember"/>
+                <Label fx:id="memberStatusLabel"/>
+            </VBox>
+
+            <!-- Add Transaction Pane -->
+            <VBox fx:id="addTransactionPane" spacing="10" layoutX="20" layoutY="80" visible="false" managed="false">
+                <Label text="Select Group"/>
+                <ComboBox fx:id="groupDropdownForTransaction" promptText="Select Group"/>
+
+                <Label text="Select Payer"/>
+                <ComboBox fx:id="payerDropdown" promptText="Select Payer"/>
+
+                <Label text="Select Payees"/>
+                <ListView fx:id="payeeList"/>
+
+                <Label text="Enter Amount"/>
+                <TextField fx:id="amountField" promptText="Enter Amount"/>
+
+                <Label text="Enter Description"/>
+                <TextField fx:id="descriptionField" promptText="Enter Description"/>
+
+                <Button text="Add Transaction" onAction="#handleAddTransaction"/>
+                <Label fx:id="transactionStatusLabel"/>
+            </VBox>
+
+            <!-- Add Minimize Transaction Pane -->
+            <VBox fx:id="addMinimizingPane" spacing="10" layoutX="20" layoutY="60" visible="false" managed="false">
+                <Label text="Select Group"/>
+                <ComboBox fx:id="groupDropdownForMinimizing" promptText="Select Group"/>
+                <Button text="Simplify Transactions!" onAction="#simplify"/>
+            </VBox>
+        </StackPane >
+    </center>
+
+    <!-- Right Pane -->
+    <right>
+        <ScrollPane fx:id="transactionScrollPane" vbarPolicy="ALWAYS" fitToWidth="true" fitToHeight="true" minWidth="500.0" maxWidth="500.0">
+            <VBox fx:id="transactionPane" minWidth="500.0" maxWidth="500.0" spacing="5" style="-fx-padding: 10; -fx-background-color: #e6f1f8; -fx-border-color: #0f4368; -fx-border-width: 2;">
+                <Label text="Transactions:" />
+            </VBox>
+        </ScrollPane>
+    </right>
+
+</BorderPane>
